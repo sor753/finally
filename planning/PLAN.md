@@ -1,51 +1,53 @@
 # FinAlly — AI Trading Workstation
 
-## Project Specification
+## プロジェクト仕様
 
-## 1. Vision
+## 1. ビジョン
 
-FinAlly (Finance Ally) is a visually stunning AI-powered trading workstation that streams live market data, lets users trade a simulated portfolio, and integrates an LLM chat assistant that can analyze positions and execute trades on the user's behalf. It looks and feels like a modern Bloomberg terminal with an AI copilot.
+FinAlly（Finance Ally）は、視覚的に美しいAI搭載のトレーディングワークステーション。
+リアルタイムの市場データをストリーミング配信し、ユーザーはシミュレーションポートフォリオで取引を行うことができ、さらにポジション分析やユーザーに代わって取引を実行できるLLMチャットアシスタントを統合。まるでAIコパイロットを搭載した最新のBloomberg端末のような外観と操作感。
 
-This is the capstone project for an agentic AI coding course. It is built entirely by Coding Agents demonstrating how orchestrated AI agents can produce a production-quality full-stack application. Agents interact through files in `planning/`.
+これは、エージェント型AIコーディングコースの集大成となるプロジェクト。AIエージェントが連携して、本番環境レベルのフルスタックアプリケーションを構築できることを示すために、コーディングエージェントによって完全に構築されています。エージェントは`planning/`ディレクトリ内のファイルを介して相互作用します。
 
-## 2. User Experience
+## 2. ユーザーエクスペリエンス
 
-### First Launch
+### 初回起動
 
-The user runs a single Docker command (or a provided start script). A browser opens to `http://localhost:8000`. No login, no signup. They immediately see:
+ユーザーはDockerコマンド（または提供されている起動スクリプト）を1つ実行すると、ブラウザが`http://localhost:8000`を開く。ログインもサインアップも不要で、すぐに以下の画面が表示される。
 
-- A watchlist of 10 default tickers with live-updating prices in a grid
-- $10,000 in virtual cash
-- A dark, data-rich trading terminal aesthetic
-- An AI chat panel ready to assist
+- リアルタイムで価格が更新されるグリッド形式の、デフォルトのティッカーシンボル10個のウォッチリスト
+- 仮想通貨10,000ドル
+- ダークトーンでデータ豊富なトレーディングターミナルのデザイン
+- すぐにサポートを受けられるAIチャットパネル
 
-### What the User Can Do
+### ユーザーができること
 
-- **Watch prices stream** — prices flash green (uptick) or red (downtick) with subtle CSS animations that fade
-- **View sparkline mini-charts** — price action beside each ticker in the watchlist, accumulated on the frontend from the SSE stream since page load (sparklines fill in progressively)
-- **Click a ticker** to see a larger detailed chart in the main chart area
-- **Buy and sell shares** — market orders only, instant fill at current price, no fees, no confirmation dialog
-- **Monitor their portfolio** — a heatmap (treemap) showing positions sized by weight and colored by P&L, plus a P&L chart tracking total portfolio value over time
-- **View a positions table** — ticker, quantity, average cost, current price, unrealized P&L, % change
-- **Chat with the AI assistant** — ask about their portfolio, get analysis, and have the AI execute trades and manage the watchlist through natural language
-- **Manage the watchlist** — add/remove tickers manually or via the AI chat
+- **価格ストリームの監視** — 価格は上昇時は緑色、下落時は赤色で点滅し、CSSアニメーションで徐々にフェードアウトします。
+- **スパークラインミニチャートの表示** — ウォッチリストの各銘柄の横に、ページ読み込み以降のSSEストリームからフロントエンドに蓄積された価格変動が表示されます（スパークラインは徐々に表示されます）。
+- **銘柄をクリック**すると、メインチャートエリアに詳細なチャートが表示されます。
+- **株式の売買** — 成行注文のみ、現在の価格で即時約定、手数料無料、確認ダイアログなし
+- **ポートフォリオの監視** — ポジションをウェイト別にサイズ表示し、損益に応じて色分けしたヒートマップ（ツリーマップ）と、ポートフォリオ全体の価値を時系列で追跡する損益チャートが表示されます。
+- **ポジション一覧表の表示** — 銘柄、数量、平均取得価格、現在の価格、未実現損益、変動率が表示されます。
+- **AIアシスタントとのチャット** — ポートフォリオに関する質問、分析結果の取得、AIによる取引実行、ウォッチリストの管理を自然な会話で行えます。言語
+- **ウォッチリストの管理** — 銘柄の追加/削除を手動で行うか、AIチャット経由で行います
 
-### Visual Design
+### ビジュアルデザイン
 
-- **Dark theme**: backgrounds around `#0d1117` or `#1a1a2e`, muted gray borders, no pure black
-- **Price flash animations**: brief green/red background highlight on price change, fading over ~500ms via CSS transitions
-- **Connection status indicator**: a small colored dot (green = connected, yellow = reconnecting, red = disconnected) visible in the header
-- **Professional, data-dense layout**: inspired by Bloomberg/trading terminals — every pixel earns its place
-- **Responsive but desktop-first**: optimized for wide screens, functional on tablet
+- **ダークテーマ**: 背景色は`#0d1117`または`#1a1a2e`付近、境界線は控えめなグレー、純粋な黒は使用していません。
+- **価格フラッシュアニメーション**: 価格変動時に背景が緑/赤で短時間ハイライト表示され、CSSトランジションにより約500msかけてフェードアウトします。
+- **接続状態インジケーター**: ヘッダーに小さな色のドットが表示されます（緑＝接続済み、黄＝再接続中、赤＝切断済み）。
+- **プロフェッショナルでデータ密度の高いレイアウト**: Bloombergやトレーディング端末にインスパイアされた、すべてのピクセルが意味を持つレイアウトです。
+- **レスポンシブデザインでありながらデスクトップファースト**: ワイドスクリーンに最適化され、タブレットでも快適に動作します。
 
-### Color Scheme
-- Accent Yellow: `#ecad0a`
-- Blue Primary: `#209dd7`
-- Purple Secondary: `#753991` (submit buttons)
+### カラースキーマ
 
-## 3. Architecture Overview
+- アクセントイエロー：`#ecad0a`
+- メインブルー：`#209dd7`
+- サブパープル：`#753991`（送信ボタン）
 
-### Single Container, Single Port
+## 3. アーキテクチャ概要
+
+### 単一コンテナ、単一ポート
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -62,27 +64,27 @@ The user runs a single Docker command (or a provided start script). A browser op
 └─────────────────────────────────────────────────┘
 ```
 
-- **Frontend**: Next.js with TypeScript, built as a static export (`output: 'export'`), served by FastAPI as static files
-- **Backend**: FastAPI (Python), managed as a `uv` project
-- **Database**: SQLite, single file at `db/finally.db`, volume-mounted for persistence
-- **Real-time data**: Server-Sent Events (SSE) — simpler than WebSockets, one-way server→client push, works everywhere
-- **AI integration**: LiteLLM → OpenRouter (Cerebras for fast inference), with structured outputs for trade execution
-- **Market data**: Environment-variable driven — simulator by default, real data via Massive API if key provided
+- **フロントエンド**: Next.jsとTypeScriptを使用。静的エクスポート（`output: 'export'`）として構築され、FastAPIによって静的ファイルとして配信。
+- **バックエンド**: FastAPI（Python）を使用。`uv`プロジェクトとして管理。
+- **データベース**: SQLiteを使用。`db/finally.db`に単一ファイルとして保存され、永続化のためにボリュームマウントされる。
+- **リアルタイムデータ**: Server-Sent Events（SSE）を使用。WebSocketよりもシンプルで、サーバーからクライアントへの一方向プッシュ配信。あらゆる環境で動作する。
+- **AI統合**: LiteLLM → OpenRouter（高速推論にはCerebrasを使用）。取引実行のための構造化出力を提供。
+- **市場データ**: 環境変数によって制御される。デフォルトではシミュレーター、キーが指定されている場合はMassive API経由で実データを使用する。
 
-### Why These Choices
+### なぜこれらの選択をするのか
 
-| Decision | Rationale |
-|---|---|
-| SSE over WebSockets | One-way push is all we need; simpler, no bidirectional complexity, universal browser support |
-| Static Next.js export | Single origin, no CORS issues, one port, one container, simple deployment |
-| SQLite over Postgres | No auth = no multi-user = no need for a database server; self-contained, zero config |
-| Single Docker container | Students run one command; no docker-compose for production, no service orchestration |
-| uv for Python | Fast, modern Python project management; reproducible lockfile; what students should learn |
-| Market orders only | Eliminates order book, limit order logic, partial fills — dramatically simpler portfolio math |
+| Decision                  | Rationale                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| WebSocket 上の SSE        | 一方向プッシュのみで十分。シンプルで双方向の複雑さがなく、あらゆるブラウザに対応             |
+| 静的 Next.js エクスポート | シングルオリジン、CORS の問題なし、ポート 1 つ、コンテナ 1 つ、シンプルなデプロイメント      |
+| PostgreSQL 上の SQLite    | 認証なし = マルチユーザーなし = データベース サーバー不要。自己完結型、設定不要              |
+| 単一の Docker コンテナ    | コマンド 1 つを実行するだけ。本番環境で docker-compose やサービス オーケストレーションは不要 |
+| Python 用 uv              | 高速で最新の Python プロジェクト管理。再現可能なロックファイル。学ぶべき内容                 |
+| 成行注文のみ              | オーダーブック、指値注文ロジック、部分約定を排除 - ポートフォリオ計算が劇的に簡素化          |
 
 ---
 
-## 4. Directory Structure
+## 4. ディレクトリ構成
 
 ```
 finally/
@@ -106,272 +108,282 @@ finally/
 └── .gitignore
 ```
 
-### Key Boundaries
+### 各システムの役割分担(Key Boundaries)
 
-- **`frontend/`** is a self-contained Next.js project. It knows nothing about Python. It talks to the backend via `/api/*` endpoints and `/api/stream/*` SSE endpoints. Internal structure is up to the Frontend Engineer agent.
-- **`backend/`** is a self-contained uv project with its own `pyproject.toml`. It owns all server logic including database initialization, schema, seed data, API routes, SSE streaming, market data, and LLM integration. Internal structure is up to the Backend/Market Data agents.
-- **`backend/db/`** contains schema SQL definitions and seed logic. The backend lazily initializes the database on first request — creating tables and seeding default data if the SQLite file doesn't exist or is empty.
-- **`db/`** at the top level is the runtime volume mount point. The SQLite file (`db/finally.db`) is created here by the backend and persists across container restarts via Docker volume.
-- **`planning/`** contains project-wide documentation, including this plan. All agents reference files here as the shared contract.
-- **`test/`** contains Playwright E2E tests and supporting infrastructure (e.g., `docker-compose.test.yml`). Unit tests live within `frontend/` and `backend/` respectively, following each framework's conventions.
-- **`scripts/`** contains start/stop scripts that wrap Docker commands.
+- **`frontend/`** は自己完結型の Next.js プロジェクト。Python については何も知らない。`/api/*` エンドポイントと `/api/stream/*` SSE エンドポイントを介してバックエンドと通信する。内部構造はフロントエンド エンジニア エージェントに委ねられる。
+- **`backend/`** は自己完結型の uv プロジェクトで、独自の `pyproject.toml` ファイルを持つ。データベースの初期化、スキーマ、シードデータ、API ルート、SSE ストリーミング、マーケットデータ、LLM 統合など、すべてのサーバー ロジックを所有している。内部構造はバックエンド/マーケットデータ エージェントに委ねられる。
+- **`backend/db/`** にはスキーマ SQL 定義とシードロジックが含まれている。バックエンドは最初の要求時にデータベースを遅延初期化。SQLite ファイルが存在しない場合、または空の場合は、テーブルを作成し、デフォルト データをシードする。
+- **`db/`** は最上位レベルのランタイム ボリューム マウント ポイント。 SQLiteファイル（`db/finally.db`）はバックエンドによってここに作成され、Dockerボリュームを介してコンテナの再起動後も保持される。
+- **`planning/`**には、このプランを含むプロジェクト全体のドキュメントが含まれている。すべてのエージェントは、共有契約としてここにあるファイルを参照する。
+- **`test/`**には、Playwrightのエンドツーエンドテストとそれをサポートするインフラストラクチャ（例：`docker-compose.test.yml`）が含まれている。ユニットテストは、各フレームワークの慣例に従い、それぞれ`frontend/`と`backend/`に配置。
+- **`scripts/`**には、Dockerコマンドをラップする起動/停止スクリプトが含まれてる。
 
 ---
 
-## 5. Environment Variables
+## 5. 環境変数
 
 ```bash
-# Required: OpenRouter API key for LLM chat functionality
+# 必須：LLMチャット機能用のOpenRouter APIキー
 OPENROUTER_API_KEY=your-openrouter-api-key-here
 
-# Optional: Massive (Polygon.io) API key for real market data
-# If not set, the built-in market simulator is used (recommended for most users)
+# オプション：実際の市場データを取得するために、Massive（Polygon.io）APIキーを指定する。
+# 設定しない場合は、内蔵の市場シミュレーターが使用される（ほとんどのユーザーに推奨）。
 MASSIVE_API_KEY=
 
-# Optional: Set to "true" for deterministic mock LLM responses (testing)
+#オプション: 決定論的な模擬 LLM 応答 (テスト用) の場合は「true」に設定
 LLM_MOCK=false
 ```
 
-### Behavior
+### 動作
 
-- If `MASSIVE_API_KEY` is set and non-empty → backend uses Massive REST API for market data
-- If `MASSIVE_API_KEY` is absent or empty → backend uses the built-in market simulator
-- If `LLM_MOCK=true` → backend returns deterministic mock LLM responses (for E2E tests)
-- The backend reads `.env` from the project root (mounted into the container or read via docker `--env-file`)
-
----
-
-## 6. Market Data
-
-### Two Implementations, One Interface
-
-Both the simulator and the Massive client implement the same abstract interface. The backend selects which to use based on the environment variable. All downstream code (SSE streaming, price cache, frontend) is agnostic to the source.
-
-### Simulator (Default)
-
-- Generates prices using geometric Brownian motion (GBM) with configurable drift and volatility per ticker
-- Updates at ~500ms intervals
-- Correlated moves across tickers (e.g., tech stocks move together)
-- Occasional random "events" — sudden 2-5% moves on a ticker for drama
-- Starts from realistic seed prices (e.g., AAPL ~$190, GOOGL ~$175, etc.)
-- Runs as an in-process background task — no external dependencies
-
-### Massive API (Optional)
-
-- REST API polling (not WebSocket) — simpler, works on all tiers
-- Polls for the union of all watched tickers on a configurable interval
-- Free tier (5 calls/min): poll every 15 seconds
-- Paid tiers: poll every 2-15 seconds depending on tier
-- Parses REST response into the same format as the simulator
-
-### Shared Price Cache
-
-- A single background task (simulator or Massive poller) writes to an in-memory price cache
-- The cache holds the latest price, previous price, and timestamp for each ticker
-- SSE streams read from this cache and push updates to connected clients
-- This architecture supports future multi-user scenarios without changes to the data layer
-
-### SSE Streaming
-
-- Endpoint: `GET /api/stream/prices`
-- Long-lived SSE connection; client uses native `EventSource` API
-- Server pushes price updates for all tickers known to the system at a regular cadence (~500ms) — in the single-user model this is equivalent to the user's watchlist
-- Each SSE event contains ticker, price, previous price, timestamp, and change direction
-- Client handles reconnection automatically (EventSource has built-in retry)
+- `MASSIVE_API_KEY` が設定されていて空でない場合 → バックエンドは市場データ取得に Massive REST API を使用。
+- `MASSIVE_API_KEY` が設定されていないか空の場合 → バックエンドは組み込みの市場シミュレーターを使用。
+- `LLM_MOCK=true` の場合 → バックエンドは決定論的なモック LLM レスポンスを返す (E2E テスト用)。
+- バックエンドはプロジェクト ルートから `.env` ファイルを読み込む (コンテナにマウントされているか、docker `--env-file` で読み込まれます)。
 
 ---
 
-## 7. Database
+## 6. 市場データ
 
-### SQLite with Lazy Initialization
+### 2つの実装、1つのインターフェース
 
-The backend checks for the SQLite database on startup (or first request). If the file doesn't exist or tables are missing, it creates the schema and seeds default data. This means:
+シミュレータとMassiveクライアントは、同じ抽象インターフェースを実装する。バックエンドは環境変数に基づいてどちらを使用するかを選択。下流のすべてのコード（SSEストリーミング、価格キャッシュ、フロントエンド）は、ソースに依存しない。
 
-- No separate migration step
-- No manual database setup
-- Fresh Docker volumes start with a clean, seeded database automatically
+### シミュレーター（デフォルト）
 
-### Schema
+- 幾何ブラウン運動（GBM）を用いて価格を生成し、銘柄ごとにドリフトとボラティリティを設定できる。
+- 約500ミリ秒間隔で更新。
+- 銘柄間の相関的な動き（例：ハイテク株は連動して動きます）
+- ドラマチックな演出として、銘柄が突然2～5%変動するランダムな「イベント」を時折発生させる。
+- 現実的な初期価格（例：AAPL 約190ドル、GOOGL 約175ドルなど）から開始。
+- プロセス内バックグラウンドタスクとして実行され、外部依存関係はない。
 
-All tables include a `user_id` column defaulting to `"default"`. This is hardcoded for now (single-user) but enables future multi-user support without schema migration.
+### 大規模API（オプション）
 
-**users_profile** — User state (cash balance)
+- REST APIポーリング（WebSocketではありません） - よりシンプルで、すべてのティアで動作。
+- 設定可能な間隔で、監視対象のすべての銘柄の統合値をポーリングする。
+- 無​​料ティア（5回/分）：15秒ごとにポーリング
+- 有料ティア：ティアに応じて2～15秒ごとにポーリング
+- RESTレスポンスを解析します。シミュレーターと同じ形式に変換
+
+### 共有価格キャッシュ
+
+- 単一のバックグラウンドタスク（シミュレーターまたはMassiveポーラー）がインメモリ価格キャッシュに書き込む。
+- キャッシュには、各銘柄の最新価格、前価格、およびタイムスタンプが格納される。
+- SSEストリームはこのキャッシュからデータを読み取り、接続されているクライアントに更新情報をプッシュする。
+- このアーキテクチャは、データレイヤーを変更することなく、将来のマルチユーザーシナリオをサポートする。
+
+### SSEストリーミング
+
+- エンドポイント：`GET /api/stream/prices`
+- 長時間のSSE接続。クライアントはネイティブの`EventSource` APIを使用する。
+- サーバーは、システムが認識しているすべての銘柄の価格更新情報を一定の間隔（約500ms）でプッシュする。シングルユーザーモデルでは、これはユーザーのウォッチリストに相当。
+- 各SSEイベントには、銘柄、価格、前価格、タイムスタンプ、および変動方向が含まれる。
+- クライアントは再接続を自動的に処理する（EventSourceにはリトライ機能が組み込まれている）。
+
+---
+
+## 7. データベース
+
+### SQLiteの遅延初期化
+
+バックエンドは起動時（または最初のリクエスト時）にSQLiteデータベースの存在を確認する。ファイルが存在しない場合、またはテーブルが不足している場合は、スキーマを作成し、デフォルトデータをシードする。これにより、以下のメリットが得られる。
+
+- 別途移行手順は不要
+- 手動でのデータベース設定は不要
+- 新規のDockerボリュームは、自動的にクリーンなシード済みデータベースで起動
+
+### スキーマ
+
+すべてのテーブルには、デフォルト値が「default」の`user_id`列が含まれている。これは現状（シングルユーザー）ではハードコーディングされるが、将来的にスキーマ移行なしでマルチユーザーをサポートすることを可能にする。
+
+**users_profile** — ユーザーの状態（キャッシュバランス）
+
 - `id` TEXT PRIMARY KEY (default: `"default"`)
 - `cash_balance` REAL (default: `10000.0`)
 - `created_at` TEXT (ISO timestamp)
 
-**watchlist** — Tickers the user is watching
+**watchlist** — ユーザーが監視している銘柄
+
 - `id` TEXT PRIMARY KEY (UUID)
 - `user_id` TEXT (default: `"default"`)
 - `ticker` TEXT
 - `added_at` TEXT (ISO timestamp)
-- UNIQUE constraint on `(user_id, ticker)`
+- `(user_id, ticker)` に一意性制約あり
 
-**positions** — Current holdings (one row per ticker per user)
+**positions** — 現在の保有銘柄（ユーザーごとに銘柄ごとに1行）
+
 - `id` TEXT PRIMARY KEY (UUID)
 - `user_id` TEXT (default: `"default"`)
-- `ticker` TEXT
-- `quantity` REAL (fractional shares supported)
-- `avg_cost` REAL
-- `updated_at` TEXT (ISO timestamp)
-- UNIQUE constraint on `(user_id, ticker)`
+- `ticker`テキスト
+- `quantity` 実数 (端数株対応)
+- `avg_cost` 実数
+- `updated_at` テキスト (ISO timestamp)
+- `(user_id, ticker)` に対する一意制約
 
-**trades** — Trade history (append-only log)
-- `id` TEXT PRIMARY KEY (UUID)
-- `user_id` TEXT (default: `"default"`)
-- `ticker` TEXT
-- `side` TEXT (`"buy"` or `"sell"`)
-- `quantity` REAL (fractional shares supported)
-- `price` REAL
-- `executed_at` TEXT (ISO timestamp)
+**trades** — 取引履歴 (追記専用ログ)
 
-**portfolio_snapshots** — Portfolio value over time (for P&L chart). Recorded every 30 seconds by a background task, and immediately after each trade execution.
-- `id` TEXT PRIMARY KEY (UUID)
+- `id` テキスト 主キー (UUID)
+- `user_id` テキスト (default: `"default"`)
+- `ticker` テキスト
+- `side` テキスト (`"buy"` または `"sell"`)
+- `quantity` 実数 (端数株対応)
+- `price` 実数
+- `executed_at` テキスト (ISO timestamp)
+
+**portfolio_snapshots** — ポートフォリオの時系列価値 (損益グラフ用)。バックグラウンドタスクにより30秒ごとに、また各取引実行直後に記録されます。
+
+- `id` TEXT プライマリキー (UUID)
 - `user_id` TEXT (default: `"default"`)
 - `total_value` REAL
 - `recorded_at` TEXT (ISO timestamp)
 
-**chat_messages** — Conversation history with LLM
-- `id` TEXT PRIMARY KEY (UUID)
+**chat_messages** — LLMとの会話履歴
+
+- `id` TEXT プライマリキー (UUID)
 - `user_id` TEXT (default: `"default"`)
-- `role` TEXT (`"user"` or `"assistant"`)
+- `role` TEXT (`"user"` または `"assistant"`)
 - `content` TEXT
-- `actions` TEXT (JSON — trades executed, watchlist changes made; null for user messages)
+- `actions` TEXT (JSON — 実行された取引、ウォッチリストの変更。ユーザーメッセージの場合はnull)
 - `created_at` TEXT (ISO timestamp)
 
-### Default Seed Data
+### 初期シードデータ
 
-- One user profile: `id="default"`, `cash_balance=10000.0`
-- Ten watchlist entries: AAPL, GOOGL, MSFT, AMZN, TSLA, NVDA, META, JPM, V, NFLX
+- ユーザープロファイル1つ: `id="default"`、`cash_balance=10000.0`
+- ウォッチリストエントリ10件: AAPL、GOOGL、MSFT、AMZN、TSLA、NVDA、META、JPM、V、NFLX
 
 ---
 
 ## 8. API Endpoints
 
 ### Market Data
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/stream/prices` | SSE stream of live price updates |
+
+| Method | Path                 | Description               |
+| ------ | -------------------- | ------------------------- |
+| GET    | `/api/stream/prices` | 価格最新情報の SSE stream |
 
 ### Portfolio
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/portfolio` | Current positions, cash balance, total value, unrealized P&L |
-| POST | `/api/portfolio/trade` | Execute a trade: `{ticker, quantity, side}` |
-| GET | `/api/portfolio/history` | Portfolio value snapshots over time (for P&L chart) |
+
+| Method | Path                     | Description                                                    |
+| ------ | ------------------------ | -------------------------------------------------------------- |
+| GET    | `/api/portfolio`         | 現在のポジション、現金残高、総資産額、未実現損益               |
+| POST   | `/api/portfolio/trade`   | 取引を実行する: `{ticker, quantity, side}`                     |
+| GET    | `/api/portfolio/history` | ポートフォリオ価値の推移を示すスナップショット（損益計算書用） |
 
 ### Watchlist
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/watchlist` | Current watchlist tickers with latest prices |
-| POST | `/api/watchlist` | Add a ticker: `{ticker}` |
-| DELETE | `/api/watchlist/{ticker}` | Remove a ticker |
+
+| Method | Path                      | Description                      |
+| ------ | ------------------------- | -------------------------------- |
+| GET    | `/api/watchlist`          | 最新価格付きのウォッチリスト銘柄 |
+| POST   | `/api/watchlist`          | 銘柄コード追加: `{ticker}`       |
+| DELETE | `/api/watchlist/{ticker}` | 銘柄コード削除                   |
 
 ### Chat
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/chat` | Send a message, receive complete JSON response (message + executed actions) |
+
+| Method | Path        | Description                                                                            |
+| ------ | ----------- | -------------------------------------------------------------------------------------- |
+| POST   | `/api/chat` | メッセージを送信すると、完全なJSONレスポンス(message + executed actions)が返されます。 |
 
 ### System
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/health` | Health check (for Docker/deployment) |
+
+| Method | Path          | Description                          |
+| ------ | ------------- | ------------------------------------ |
+| GET    | `/api/health` | Health check (for Docker/deployment) |
 
 ---
 
-## 9. LLM Integration
+## 9. LLM統合
 
-When writing code to make calls to LLMs, use cerebras-inference skill to use LiteLLM via OpenRouter to the `openrouter/openai/gpt-oss-120b` model with Cerebras as the inference provider. Structured Outputs should be used to interpret the results.
+LLMを呼び出すコードを記述する際は、cerebras-inferenceスキルを使用して、OpenRouter経由でLiteLLMを`openrouter/openai/gpt-oss-120b`モデルに渡して、推論プロバイダとしてCerebrasを使用する。結果の解釈には構造化出力を使用する必要がある。
 
-There is an OPENROUTER_API_KEY in the .env file in the project root.
+プロジェクトルートの.envファイルにOPENROUTER_API_KEYを記載。
 
-### How It Works
+### 仕組み
 
-When the user sends a chat message, the backend:
+ユーザーがチャットメッセージを送信すると、バックエンドは以下の処理を実行。
 
-1. Loads the user's current portfolio context (cash, positions with P&L, watchlist with live prices, total portfolio value)
-2. Loads recent conversation history from the `chat_messages` table
-3. Constructs a prompt with a system message, portfolio context, conversation history, and the user's new message
-4. Calls the LLM via LiteLLM → OpenRouter, requesting structured output, using the cerebras-inference skill
-5. Parses the complete structured JSON response
-6. Auto-executes any trades or watchlist changes specified in the response
-7. Stores the message and executed actions in `chat_messages`
-8. Returns the complete JSON response to the frontend (no token-by-token streaming — Cerebras inference is fast enough that a loading indicator is sufficient)
+1. ユーザーの現在のポートフォリオコンテキスト（現金、損益のあるポジション、リアルタイム価格のウォッチリスト、ポートフォリオの合計価値）を読み込む。
+2. `chat_messages` テーブルから最近の会話履歴を読み込む。
+3. システムメッセージ、ポートフォリオコンテキスト、会話履歴、およびユーザーの新しいメッセージを含むプロンプトを作成。
+4. cerebras-inference スキルを使用して、LiteLLM → OpenRouter 経由で LLM を呼び出し、構造化出力を要求。
+5. 構造化された JSON レスポンス全体を解析。
+6. レスポンスで指定された取引またはウォッチリストの変更を自動的に実行。
+7. メッセージと実行されたアクションを `chat_messages` テーブルに保存
+8. フロントエンドに完全な JSON レスポンスを返す（トークンごとのストリーミングは行わない。Cerebras の推論は十分高速であるため、読み込みインジケーターで十分）。
 
-### Structured Output Schema
+### 構造化スキーマ出力
 
-The LLM is instructed to respond with JSON matching this schema:
+LLMは、以下のスキーマに一致するJSONで応答するように指示される:
 
 ```json
 {
-  "message": "Your conversational response to the user",
-  "trades": [
-    {"ticker": "AAPL", "side": "buy", "quantity": 10}
-  ],
-  "watchlist_changes": [
-    {"ticker": "PYPL", "action": "add"}
-  ]
+  "message": "ユーザーへの会話応答",
+  "trades": [{ "ticker": "AAPL", "side": "buy", "quantity": 10 }],
+  "watchlist_changes": [{ "ticker": "PYPL", "action": "add" }]
 }
 ```
 
-- `message` (required): The conversational text shown to the user
-- `trades` (optional): Array of trades to auto-execute. Each trade goes through the same validation as manual trades (sufficient cash for buys, sufficient shares for sells)
-- `watchlist_changes` (optional): Array of watchlist modifications
+- `message` (必須): ユーザーに表示される会話テキスト
+- `trades` (オプション): 自動実行する取引の配列。各取引は、手動取引と同様の検証（買いの場合は十分な現金、売りの場合は十分な株数）を受ける。
+- `watchlist_changes` (オプション): ウォッチリストの変更内容の配列
 
-### Auto-Execution
+### 自動実行
 
-Trades specified by the LLM execute automatically — no confirmation dialog. This is a deliberate design choice:
-- It's a simulated environment with fake money, so the stakes are zero
-- It creates an impressive, fluid demo experience
-- It demonstrates agentic AI capabilities — the core theme of the course
+LLM（ローン・リワード・マネージャー）が指定した取引は、確認ダイアログなしで自動的に実行される。これは意図的な設計である。
 
-If a trade fails validation (e.g., insufficient cash), the error is included in the chat response so the LLM can inform the user.
+- 仮想資金を使用したシミュレーション環境なので、リスクはゼロ。
+- スムーズで印象的なデモ体験を提供する。
+- コースの中核テーマである、エージェント型AIの機能を実証する。
 
-### System Prompt Guidance
+取引の検証に失敗した場合（例：資金不足）、エラーメッセージはチャット応答に含まれ、LLMがユーザーに通知される。
 
-The LLM should be prompted as "FinAlly, an AI trading assistant" with instructions to:
-- Analyze portfolio composition, risk concentration, and P&L
-- Suggest trades with reasoning
-- Execute trades when the user asks or agrees
-- Manage the watchlist proactively
-- Be concise and data-driven in responses
-- Always respond with valid structured JSON
+### システムプロンプトガイダンス
 
-### LLM Mock Mode
+LLMには「FinAlly、AIトレーディングアシスタント」というメッセージが表示され、以下の指示が与えられる。
 
-When `LLM_MOCK=true`, the backend returns deterministic mock responses instead of calling OpenRouter. This enables:
-- Fast, free, reproducible E2E tests
-- Development without an API key
-- CI/CD pipelines
+- ポートフォリオ構成、リスク集中度、損益を分析する
+- 根拠に基づいたトレード提案を行う
+- ユーザーの要求または同意に基づいてトレードを実行する
+- ウォッチリストを積極的に管理する
+- 簡潔かつデータに基づいた応答を行う
+- 常に有効な構造化JSONで応答する
 
----
+### LLMモックモード
 
-## 10. Frontend Design
+`LLM_MOCK=true` の場合、バックエンドはOpenRouterを呼び出す代わりに、決定論的なモック応答を返す。これにより、以下のことが可能となる。
 
-### Layout
-
-The frontend is a single-page application with a dense, terminal-inspired layout. The specific component architecture and layout system is up to the Frontend Engineer, but the UI should include these elements:
-
-- **Watchlist panel** — grid/table of watched tickers with: ticker symbol, current price (flashing green/red on change), daily change %, and a sparkline mini-chart (accumulated from SSE since page load)
-- **Main chart area** — larger chart for the currently selected ticker, with at minimum price over time. Clicking a ticker in the watchlist selects it here.
-- **Portfolio heatmap** — treemap visualization where each rectangle is a position, sized by portfolio weight, colored by P&L (green = profit, red = loss)
-- **P&L chart** — line chart showing total portfolio value over time, using data from `portfolio_snapshots`
-- **Positions table** — tabular view of all positions: ticker, quantity, avg cost, current price, unrealized P&L, % change
-- **Trade bar** — simple input area: ticker field, quantity field, buy button, sell button. Market orders, instant fill.
-- **AI chat panel** — docked/collapsible sidebar. Message input, scrolling conversation history, loading indicator while waiting for LLM response. Trade executions and watchlist changes shown inline as confirmations.
-- **Header** — portfolio total value (updating live), connection status indicator, cash balance
-
-### Technical Notes
-
-- Use `EventSource` for SSE connection to `/api/stream/prices`
-- Canvas-based charting library preferred (Lightweight Charts or Recharts) for performance
-- Price flash effect: on receiving a new price, briefly apply a CSS class with background color transition, then remove it
-- All API calls go to the same origin (`/api/*`) — no CORS configuration needed
-- Tailwind CSS for styling with a custom dark theme
+- 高速、無料、再現可能なE2Eテスト
+- APIキーなしでの開発
+- CI/CDパイプライン
 
 ---
 
-## 11. Docker & Deployment
+## 10. フロントエンドデザイン
+
+### レイアウト
+
+フロントエンドは、ターミナル風の高密度レイアウトを採用したシングルページアプリケーション。具体的なコンポーネントアーキテクチャとレイアウトシステムはフロントエンドエンジニアに委ねられるが、UIには以下の要素を含める必要がある。
+
+- **ウォッチリストパネル** — ウォッチリスト対象の銘柄をグリッド/テーブル形式で表示。銘柄コード、現在の価格（変動時に緑/赤で点滅）、日足変動率、スパークラインミニチャート（ページ読み込み以降のSSEからの累積値）が表示。
+- **メインチャートエリア** — 現在選択されている銘柄のチャート（時系列の最安値も表示）。ウォッチリストで銘柄をクリックすると、このチャートでその銘柄が選択される。
+- **ポートフォリオヒートマップ** — 各長方形がポジションを表し、ポートフォリオのウェイトに応じてサイズが調整され、損益（緑＝利益、赤＝損失）に応じて色分けされたツリーマップ形式の可視化。
+- **損益チャート** — `portfolio_snapshots` のデータを使用した、ポートフォリオの総額の推移を示す折れ線グラフ。
+- **ポジション一覧表** — すべてのポジションを一覧表示する表形式ビュー：ティッカー、数量、平均取得価格、現在価格、未実現損益、変動率。
+- **トレードバー** — シンプルな入力エリア：ティッカー、数量、買いボタン、売りボタン。成行注文、即時約定。
+- **AIチャットパネル** — ドッキング/折りたたみ可能なサイドバー。メッセージ入力、スクロール可能な会話履歴、LLMからの応答待ち中の読み込みインジケーター。取引の約定とウォッチリストの変更は確認としてインラインで表示される。
+- **ヘッダー** — ポートフォリオの合計価値（リアルタイム更新）、接続ステータス表示、現金残高
+
+### 技術情報
+
+- `/api/stream/prices` への SSE 接続には `EventSource` を使用。
+- パフォーマンス向上のため、Canvas ベースのチャートライブラリ（Lightweight Charts または Recharts）の使用を推奨。
+- 価格フラッシュ効果：新しい価格を受信した際に、背景色トランジション付きの CSS クラスを短時間適用し、その後削除。
+- すべての API 呼び出しは同一のオリジン (`/api/*`) に送信されるため、CORS 設定は不要。
+- カスタムダークテーマのスタイリングには Tailwind CSS を使用します。
+
+---
+
+## 11. Docker & デプロイメント
 
 ### Multi-Stage Dockerfile
 
@@ -389,68 +401,73 @@ Stage 2: Python 3.12 slim
   - CMD: uvicorn serving FastAPI app
 ```
 
-FastAPI serves the static frontend files and all API routes on port 8000.
+FastAPIは、静的フロントエンドファイルとすべてのAPIルートをポート8000​​で提供。
 
-### Docker Volume
+### Dockerボリューム
 
-The SQLite database persists via a named Docker volume:
+SQLiteデータベースは、名前付きDockerボリュームを介して永続化される。
 
 ```bash
 docker run -v finally-data:/app/db -p 8000:8000 --env-file .env finally
 ```
 
-The `db/` directory in the project root maps to `/app/db` in the container. The backend writes `finally.db` to this path.
+プロジェクトルートの`db/`ディレクトリは、コンテナ内の`/app/db`にマッピングされる。バックエンドはこのパスに`finally.db`というファイルを書き込む。
 
 ### Start/Stop Scripts
 
 **`scripts/start_mac.sh`** (macOS/Linux):
-- Builds the Docker image if not already built (or if `--build` flag passed)
-- Runs the container with the volume mount, port mapping, and `.env` file
-- Prints the URL to access the app
-- Optionally opens the browser
+
+- まだビルドされていない場合（または`--build`フラグが指定されている場合）は、Dockerイメージをビルド。
+- ボリュームマウント、ポートマッピング、および`.env`ファイルを使用してコンテナを実行。
+- アプリケーションにアクセスするためのURLを表示。
+- 必要に応じてブラウザを開く。
 
 **`scripts/stop_mac.sh`** (macOS/Linux):
-- Stops and removes the running container
-- Does NOT remove the volume (data persists)
+
+- 実行中のコンテナを停止して削除。
+- ボリュームは削除されない（データは保持）。
 
 **`scripts/start_windows.ps1`** / **`scripts/stop_windows.ps1`**: PowerShell equivalents for Windows.
 
-All scripts should be idempotent — safe to run multiple times.
+すべてのスクリプトは冪等性を持つ。つまり、複数回実行しても安全であるべきである。
 
-### Optional Cloud Deployment
+### オプションのクラウドデプロイ
 
-The container is designed to deploy to AWS App Runner, Render, or any container platform. A Terraform configuration for App Runner may be provided in a `deploy/` directory as a stretch goal, but is not part of the core build.
+このコンテナは、AWS App Runner、Render、またはその他のコンテナプラットフォームへのデプロイを想定して設計されている。App Runner用のTerraform構成は、ストレッチゴールとして`deploy/`ディレクトリに提供される可能性がありるが、コアビルドには含まれない。
 
 ---
 
-## 12. Testing Strategy
+## 12. テスト戦略
 
-### Unit Tests (within `frontend/` and `backend/`)
+### 単体テスト (`frontend/` および `backend/` 内)
 
-**Backend (pytest)**:
-- Market data: simulator generates valid prices, GBM math is correct, Massive API response parsing works, both implementations conform to the abstract interface
-- Portfolio: trade execution logic, P&L calculations, edge cases (selling more than owned, buying with insufficient cash, selling at a loss)
-- LLM: structured output parsing handles all valid schemas, graceful handling of malformed responses, trade validation within chat flow
-- API routes: correct status codes, response shapes, error handling
+**バックエンド (pytest)**:
 
-**Frontend (React Testing Library or similar)**:
-- Component rendering with mock data
-- Price flash animation triggers correctly on price changes
-- Watchlist CRUD operations
-- Portfolio display calculations
-- Chat message rendering and loading state
+- マーケットデータ: シミュレーターが有効な価格を生成、GBM 計算が正しい、Massive API レスポンスの解析が機能、両方の実装が抽象インターフェースに準拠
+- ポートフォリオ: 取引実行ロジック、損益計算、エッジケース (保有量以上の売却、不足資金での購入、損失での売却)
+- LLM: 構造化出力解析がすべての有効なスキーマを処理、不正なレスポンスの適切な処理、チャットフロー内での取引検証
+- API ルート: 正しいステータスコード、レスポンス形式、エラー処理
 
-### E2E Tests (in `test/`)
+**フロントエンド (React Testing Library または類似ライブラリ)**:
 
-**Infrastructure**: A separate `docker-compose.test.yml` in `test/` that spins up the app container plus a Playwright container. This keeps browser dependencies out of the production image.
+- モックデータを使用したコンポーネントのレンダリング
+- 価格変動時に価格フラッシュアニメーションが正しくトリガーされる
+- ウォッチリストの CRUD 操作
+- ポートフォリオ表示の計算
+- チャットメッセージのレンダリングと読み込み状態
 
-**Environment**: Tests run with `LLM_MOCK=true` by default for speed and determinism.
+### E2E テスト ( `test/`)
 
-**Key Scenarios**:
-- Fresh start: default watchlist appears, $10k balance shown, prices are streaming
-- Add and remove a ticker from the watchlist
-- Buy shares: cash decreases, position appears, portfolio updates
-- Sell shares: cash increases, position updates or disappears
-- Portfolio visualization: heatmap renders with correct colors, P&L chart has data points
-- AI chat (mocked): send a message, receive a response, trade execution appears inline
-- SSE resilience: disconnect and verify reconnection
+**インフラストラクチャ**: `test/` ディレクトリに、アプリケーションコンテナとPlaywrightコンテナを起動する`docker-compose.test.yml`ファイルを用意。これにより、ブラウザの依存関係を本番環境イメージから排除できる。
+
+**環境**: テストは、速度と決定性を確保するため、デフォルトで`LLM_MOCK=true`を有効にして実行される。
+
+**主要シナリオ**:
+
+- 新規開始: デフォルトのウォッチリストが表示され、残高1万ドルが表示され、価格がストリーミングされる。
+- ウォッチリストへの銘柄の追加と削除
+- 株式の購入: 現金が減少し、ポジションが表示され、ポートフォリオが更新される。
+- 株式の売却: 現金が増加し、ポジションが更新または消滅する。
+- ポートフォリオの可視化: ヒートマップが正しい色でレンダリングされ、損益チャートにデータポイントが表示される。
+- AIチャット（モック）：メッセージを送信し、応答を受信し、取引の実行結果がインラインで表示される。
+- SSEの耐障害性: 切断と再接続の確認
