@@ -398,6 +398,14 @@ LLM_MOCK=false
 | ------ | ------------- | ------------------------------------ |
 | GET    | `/api/health` | Health check (for Docker/deployment) |
 
+#### `GET /api/health` レスポンス
+
+```json
+{ "status": "ok" }
+```
+
+ステータスコード 200。
+
 ### エラーレスポンス
 
 - エラーは FastAPI 標準形式 `{"detail": "<メッセージ>"}` で返す。
@@ -575,4 +583,21 @@ docker run -v finally-data:/app/db -p 8000:8000 --env-file .env finally
 - ポートフォリオの可視化: ヒートマップが正しい色でレンダリングされ、損益チャートにデータポイントが表示される。
 - AIチャット（モック）：メッセージを送信し、応答を受信し、取引の実行結果がインラインで表示される。
 - SSEの耐障害性: 切断と再接続の確認
+
+### テスト実行コマンド
+
+**バックエンド単体テスト**:
+```bash
+cd backend && uv run pytest
+```
+
+**フロントエンド単体テスト**:
+```bash
+cd frontend && npm test
+```
+
+**E2Eテスト**:
+```bash
+docker compose -f test/docker-compose.test.yml up --abort-on-container-exit
+```
 
